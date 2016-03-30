@@ -17,12 +17,12 @@
     }
 
     function matchWordArrayWithLetters(wordsArray, alphabetSettings) {
+        var res = '';
         if (wordsArray && Alphabet) {
             var alph = new Alphabet(alphabetSettings);
 
             var mas = wordsArray.toString().split(''),
-                buf = 0,
-                res = '';
+                buf = 0;
 
             for (var i = 1; i <= mas.length; i++) {
                 buf += mas[i - 1].charCodeAt(0);
