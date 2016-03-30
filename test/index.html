@@ -8,6 +8,8 @@
     <title>JSpass test page</title>
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.0.0/normalize.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="../src/styles.css" media="screen" title="no title" charset="utf-8">
 
 
     <!--[if lt IE 9]>
@@ -16,40 +18,50 @@
 </head>
 
 <body>
-    <label for="mainPass">Главный пароль</label>
-    <input type="text" id="mainPass" name="mainPass">
-    <br>
+    <p>
+        <label for="mainPass" class="input-label">Главный пароль</label>
+        <input type="password" id="mainPass" name="mainPass" class="input">
+    </p>
 
-    <label for="domain">Домен</label>
-    <input type="text" id="domain" name="domain">
-    <br>
+    <p>
+        <label for="domain" class="input-label">Сервис</label>
+        <input type="text" id="domain" name="domain" class="input">
+    </p>
 
-    <label for="domain">Длина пароля</label>
-    <input type="text" id="length" name="length" value="20">
-    <br>
+    <p>
+        <label for="domain" class="input-label">Длина пароля</label>
+        <input type="number" id="length" name="length" value="20" class="input">
+    </p>
 
-    <label for="uppercase">Заглавные</label>
-    <input type="checkbox" checked id="uppercase" name="uppercase">
-    <br>
+    <div class="checkbox">
+        <label for="uppercase">Заглавные</label>
+        <input type="checkbox" checked id="uppercase" name="uppercase">
+    </div>
 
-    <label for="lowercase">Строчные</label>
-    <input type="checkbox" checked id="lowercase" name="lowercase">
-    <br>
+    <div class="checkbox">
+        <label for="lowercase">Строчные</label>
+        <input type="checkbox" checked id="lowercase" name="lowercase">
+    </div>
 
-    <label for="digits">Цифры</label>
-    <input type="checkbox" checked id="digits" name="digits">
-    <br>
+    <div class="checkbox">
+        <label for="digits">Цифры</label>
+        <input type="checkbox" checked id="digits" name="digits">
+    </div>
 
-    <label for="symbols">Символы</label>
-    <input type="checkbox" checked id="symbols" name="symbols">
-    <br>
+    <div class="checkbox">
+        <label for="symbols">Символы</label>
+        <input type="checkbox" checked id="symbols" name="symbols">
+    </div>
 
-    <input type="button" value="Генерировать" id="generate">
-    <br>
+    <p>
+        <input type="button" value="Генерировать" id="generate" class="input input-btn">
+    </p>
 
-    <label for="result">Результат</label>
-    <input type="text" id="result" name="result">
-    <br>
+    <p>
+        <label for="result" class="input-label">Результат</label>
+        <input type="text" id="result" name="result" class="input" readonly>
+    </p>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/pbkdf2.js"></script>
     <script src="../src/alphabet.js"></script>
     <script src="../src/jspass.js"></script>

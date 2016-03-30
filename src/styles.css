@@ -1,0 +1,36 @@
+body {
+    font-size: 16px;
+    font-family: sans-serif;
+    margin: 0 10px;
+}
+
+.input-label {
+    padding: 5px;
+    display:block;
+    text-align: center;
+    width:100%;
+}
+
+.input {
+    display:block;
+    text-align: center;
+    width:100%;
+    line-height: 30px;
+}
+
+.input-btn {
+    background: #fff;
+    border: 1px solid #0af;
+}
+
+.input-btn:hover,
+.input-btn:active,
+.input-btn:focus,
+.input-btn:visited{
+    background:#0af;;;
+}
+
+.checkbox {
+    padding: 10px 0;
+    text-align: center;
+}
