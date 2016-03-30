@@ -31,7 +31,7 @@
                 dic.digits = '1234567890'.split('');
             }
             if (restricted.indexOf('symbols') === -1) {
-                dic.symbols = '!\"#$%&\'()*+,./:;<=>?@[\\]^{|}~'.split('');
+                dic.symbols = '!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'.split('');
             }
         }
 
