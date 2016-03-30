@@ -43,8 +43,11 @@
     function exportToBuffer(result) {
         if (result) {
             if (document.execCommand) {
-                document.getElementById('#result').select();
-                document.execCommand('copy');
+                var res = document.querySelector('#result');
+                if (res.value) {
+                    res.select();
+                    document.execCommand('copy', true);
+                }
             } else {
                 window.prompt('Нажмите для копирования: Ctrl+C, Enter', result);
             }
@@ -61,7 +64,6 @@
                 result = JSpass.generatePassword(app, key, length, genRestrictions());
 
             setInputVal('#result', result);
-            // exportToBuffer(result);
-            // console.log(result);
+            exportToBuffer(result);
         });
 })();
