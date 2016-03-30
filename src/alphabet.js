@@ -8,19 +8,19 @@
             restricted = [];
         }
 
-        _configAlphabet();
+        configAlphabet();
 
-        if (_countDics() === 0) {
+        if (countDics() === 0) {
             restricted = [];
-            _configAlphabet();
+            configAlphabet();
         }
 
         position = {
-            current: _getDicNameByNumber(0),
-            total: _countDics()
+            current: getDicNameByNumber(0),
+            total: countDics()
         };
 
-        function _configAlphabet() {
+        function configAlphabet() {
             if (restricted.indexOf('uppercase') === -1) {
                 dic.uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
             }
@@ -35,15 +35,15 @@
             }
         }
 
-        function _countDics() {
+        function countDics() {
             return Object.keys(dic).length;
         }
 
-        function _getDicNameByNumber(number) {
+        function getDicNameByNumber(number) {
             return Object.keys(dic)[number];
         }
 
-        function _getDicNumberByName(name) {
+        function getDicNumberByName(name) {
             return Object.keys(dic).indexOf(name);
         }
 
@@ -53,10 +53,10 @@
                 return getCurrent();
             } else {
                 var currName = position.current,
-                    currIndex = _getDicNumberByName(currName),
+                    currIndex = getDicNumberByName(currName),
                     nextIndex = currIndex + 1,
                     realNextIndex = nextIndex > position.total - 1 ? 0 : nextIndex,
-                    realNextName = _getDicNameByNumber(realNextIndex),
+                    realNextName = getDicNameByNumber(realNextIndex),
                     realNextDic = dic[realNextName];
 
                 if (realNextDic) {
@@ -71,8 +71,8 @@
         }
 
         function reset() {
-            position.current = _getDicNameByNumber(0);
-            position.total = _countDics();
+            position.current = getDicNameByNumber(0);
+            position.total = countDics();
             return dic[position.current];
         }
 
