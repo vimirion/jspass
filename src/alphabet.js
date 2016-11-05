@@ -1,87 +1,83 @@
-(function() {
-    function Alphabet(restricted) {
-        var dic = {},
-            position = {},
-            firstRequest = true;
+// import SYMBOLS from './symbols';
 
-        if (typeof restricted === 'undefined' || typeof restricted.pop !== 'function') {
-            restricted = [];
-        }
+export default class Alphabet {
+	constructor(restricted = []) {
+		this.dic = {};
+		this.firstRequest = true;
+		this.restricted = restricted;
 
-        configAlphabet();
+		this.configAlphabet();
 
-        if (countDics() === 0) {
-            restricted = [];
-            configAlphabet();
-        }
+		// if (this.countDics() === 0) {
+		// 	this.restricted = [];
+		// 	this.configAlphabet();
+		// }
 
-        position = {
-            current: getDicNameByNumber(0),
-            total: countDics()
-        };
+		this.position = {
+			current: this.getDicNameByNumber(0),
+			total: this.countDics()
+		};
+	}
 
-        function configAlphabet() {
-            if (restricted.indexOf('uppercase') === -1) {
-                dic.uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-            }
-            if (restricted.indexOf('lowercase') === -1) {
-                dic.lowercase = 'abcdefghijklmnopqrstuvwxyz'.split('');
-            }
-            if (restricted.indexOf('digits') === -1) {
-                dic.digits = '1234567890'.split('');
-            }
-            if (restricted.indexOf('symbols') === -1) {
-                dic.symbols = '!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'.split('');
-            }
-        }
+	configAlphabet() {
+		if (this.restricted.indexOf('uppercase') === -1) {
+			this.dic.uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+		}
+		if (this.restricted.indexOf('lowercase') === -1) {
+			this.dic.lowercase = 'abcdefghijklmnopqrstuvwxyz'.split('');
+		}
+		if (this.restricted.indexOf('digits') === -1) {
+			this.dic.digits = '1234567890'.split('');
+		}
+		if (this.restricted.indexOf('symbols') === -1) {
+			this.dic.symbols = '!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'.split('');
+		}
+	}
 
-        function countDics() {
-            return Object.keys(dic).length;
-        }
+	countDics() {
+		return Object.keys(this.dic).length;
+	}
 
-        function getDicNameByNumber(number) {
-            return Object.keys(dic)[number];
-        }
+	getDicNameByNumber(number) {
+		return Object.keys(this.dic)[number];
+	}
 
-        function getDicNumberByName(name) {
-            return Object.keys(dic).indexOf(name);
-        }
+	getDicNumberByName(name) {
+		return Object.keys(this.dic).indexOf(name);
+	}
 
-        function next() {
-            if (firstRequest) {
-                firstRequest = false;
-                return getCurrent();
-            } else {
-                var currName = position.current,
-                    currIndex = getDicNumberByName(currName),
-                    nextIndex = currIndex + 1,
-                    realNextIndex = nextIndex > position.total - 1 ? 0 : nextIndex,
-                    realNextName = getDicNameByNumber(realNextIndex),
-                    realNextDic = dic[realNextName];
+	next() {
+		if (this.firstRequest) {
+			this.firstRequest = false;
+			return this.getCurrent();
+		} else {
+			var currName = this.position.current,
+				currIndex = this.getDicNumberByName(currName),
+				nextIndex = currIndex + 1,
+				realNextIndex = nextIndex > this.position.total - 1 ? 0 : nextIndex,
+				realNextName = this.getDicNameByNumber(realNextIndex),
+				realNextDic = this.dic[realNextName];
 
-                if (realNextDic) {
-                    position.current = realNextName;
-                    return realNextDic;
-                }
-            }
-        }
+			if (realNextDic) {
+				this.position.current = realNextName;
+				return realNextDic;
+			}
+		}
+	}
 
-        function getCurrent() {
-            return dic[position.current];
-        }
+	getCurrent() {
+		return this.dic[this.position.current];
+	}
 
-        function reset() {
-            position.current = getDicNameByNumber(0);
-            position.total = countDics();
-            return dic[position.current];
-        }
-
-        return {
-            next: next,
-            current: getCurrent,
-            reset: reset
-        };
-    }
-
-    window.Alphabet = Alphabet;
-})();
+	reset() {
+		this.position.current = this.getDicNameByNumber(0);
+		this.position.total = this.countDics();
+		return this.dic[this.position.current];
+	}
+	//
+    // return {
+    //     next: next,
+    //     current: getCurrent,
+    //     reset: reset
+    // };
+}

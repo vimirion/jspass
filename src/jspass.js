@@ -1,45 +1,48 @@
-(function(CryptoJS, Alphabet) {
-    function generateWordArray(text, key, length) {
-        length = length || 20;
+import Alphabet from './alphabet';
+import { PBKDF2 } from 'crypto-pbkdf2';
 
-        if (text && key && CryptoJS) {
-            return CryptoJS.PBKDF2(text, key, {
-                keySize: length,
-                iterations: 8
-            });
-        }
-    }
+const generateWordArray = (text, key, length) => {
+	length = Number(length) || 20;
 
-    function getLetter(sum, dic) {
-        if (sum > 0 && dic.length > 0) {
-            return dic[sum % dic.length];
-        }
-    }
+	if (text && key && PBKDF2) {
+		return PBKDF2(text, key, {
+			keySize: length,
+			iterations: 8
+		});
+	}
+};
 
-    function matchWordArrayWithLetters(wordsArray, alphabetSettings) {
-        var res = '';
-        if (wordsArray && Alphabet) {
-            var alph = new Alphabet(alphabetSettings);
+const getLetter = (sum, dic) => {
+	if (sum > 0 && dic.length > 0) {
+		return dic[sum % dic.length];
+	}
+};
 
-            var mas = wordsArray.toString().split(''),
-                buf = 0;
+const matchWordArrayWithLetters = (wordsArray, alphabetSettings) => {
+	let res = '';
+	if (wordsArray && Alphabet) {
+		let alph = new Alphabet(alphabetSettings);
+		let mas = wordsArray.toString().split('');
+		let buf = 0;
 
-            for (var i = 1; i <= mas.length; i++) {
-                buf += mas[i - 1].charCodeAt(0);
-                if (i % 8 === 0) {
-                    res += getLetter(buf, alph.next());
-                    buf = 0;
-                }
-            }
-        }
-        return res;
-    }
+		for (let i = 1; i <= mas.length; i++) {
+			buf += mas[i - 1].charCodeAt(0);
+			if (i % 8 === 0) {
+				res += getLetter(buf, alph.next());
+				buf = 0;
+			}
+		}
+	}
+	return res;
+};
 
-    function generatePassword(service, key, length, alphabetSettings) {
-        return matchWordArrayWithLetters(generateWordArray(service, key, length), alphabetSettings);
-    }
+export default class jspass {
+	constructor(service, key, length, alphabetSettings) {
+		let wordsArray = generateWordArray(service, key, length);
+		this.password = matchWordArrayWithLetters(wordsArray, alphabetSettings);
+	}
 
-    window.JSpass = {
-        generatePassword: generatePassword
-    };
-})(CryptoJS, Alphabet);
+	getPassword() {
+		return this.password;
+	}
+}

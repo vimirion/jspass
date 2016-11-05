@@ -1,0 +1,38 @@
+{
+  "name": "jspass",
+  "version": "1.0.0",
+  "description": "A safe way for strong passwords management without any stores",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vimirion/jspass.git"
+  },
+  "keywords": [
+    "password",
+    "javascript",
+    "keeper"
+  ],
+  "author": "Vladimir Io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vimirion/jspass/issues"
+  },
+  "homepage": "https://github.com/vimirion/jspass#readme",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "eslint": "^3.9.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "crypto-pbkdf2": "^0.1.2"
+  }
+}
