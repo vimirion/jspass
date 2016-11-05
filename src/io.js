@@ -1,3 +1,5 @@
+import { SYMBOLS } from './symbols';
+
 export default class io {
 	getInputVal(selector) {
 		if (selector) {
@@ -22,19 +24,12 @@ export default class io {
 	}
 
 	genRestrictions() {
-		var restricted = [];
+		let restricted = [];
 
-		if (!this.getCheckboxVal('#uppercase')) {
-			restricted.push('uppercase');
-		}
-		if (!this.getCheckboxVal('#lowercase')) {
-			restricted.push('lowercase');
-		}
-		if (!this.getCheckboxVal('#digits')) {
-			restricted.push('digits');
-		}
-		if (!this.getCheckboxVal('#symbols')) {
-			restricted.push('symbols');
+		for (let set in SYMBOLS) {
+			if (!this.getCheckboxVal(`#${set}`)) {
+				restricted.push(set);
+			}
 		}
 
 		return restricted;
@@ -43,7 +38,7 @@ export default class io {
 	exportToBuffer(result) {
 		if (result) {
 			if (document.execCommand) {
-				var res = document.querySelector('#result');
+				let res = document.querySelector('#result');
 				if (res.value) {
 					res.select();
 					document.execCommand('copy', true);

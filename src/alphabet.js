@@ -1,4 +1,4 @@
-// import SYMBOLS from './symbols';
+import { SYMBOLS } from './symbols';
 
 export default class Alphabet {
 	constructor(restricted = []) {
@@ -8,11 +8,6 @@ export default class Alphabet {
 
 		this.configAlphabet();
 
-		// if (this.countDics() === 0) {
-		// 	this.restricted = [];
-		// 	this.configAlphabet();
-		// }
-
 		this.position = {
 			current: this.getDicNameByNumber(0),
 			total: this.countDics()
@@ -20,17 +15,10 @@ export default class Alphabet {
 	}
 
 	configAlphabet() {
-		if (this.restricted.indexOf('uppercase') === -1) {
-			this.dic.uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-		}
-		if (this.restricted.indexOf('lowercase') === -1) {
-			this.dic.lowercase = 'abcdefghijklmnopqrstuvwxyz'.split('');
-		}
-		if (this.restricted.indexOf('digits') === -1) {
-			this.dic.digits = '1234567890'.split('');
-		}
-		if (this.restricted.indexOf('symbols') === -1) {
-			this.dic.symbols = '!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'.split('');
+		for (let set in SYMBOLS) {
+			if (this.restricted.indexOf(set) === -1) {
+				this.dic[set] = SYMBOLS[set].split('');
+			}
 		}
 	}
 
@@ -51,12 +39,12 @@ export default class Alphabet {
 			this.firstRequest = false;
 			return this.getCurrent();
 		} else {
-			var currName = this.position.current,
-				currIndex = this.getDicNumberByName(currName),
-				nextIndex = currIndex + 1,
-				realNextIndex = nextIndex > this.position.total - 1 ? 0 : nextIndex,
-				realNextName = this.getDicNameByNumber(realNextIndex),
-				realNextDic = this.dic[realNextName];
+			let currName = this.position.current;
+			let currIndex = this.getDicNumberByName(currName);
+			let nextIndex = currIndex + 1;
+			let realNextIndex = nextIndex > this.position.total - 1 ? 0 : nextIndex;
+			let realNextName = this.getDicNameByNumber(realNextIndex);
+			let realNextDic = this.dic[realNextName];
 
 			if (realNextDic) {
 				this.position.current = realNextName;
@@ -74,10 +62,4 @@ export default class Alphabet {
 		this.position.total = this.countDics();
 		return this.dic[this.position.current];
 	}
-	//
-    // return {
-    //     next: next,
-    //     current: getCurrent,
-    //     reset: reset
-    // };
 }

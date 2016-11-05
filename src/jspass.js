@@ -1,13 +1,13 @@
 import Alphabet from './alphabet';
 import { PBKDF2 } from 'crypto-pbkdf2';
 
-const generateWordArray = (text, key, length) => {
-	length = Number(length) || 20;
+const ITERATIONS = 8;
 
+const generateWordArray = (text, key, length = 20) => {
 	if (text && key && PBKDF2) {
 		return PBKDF2(text, key, {
 			keySize: length,
-			iterations: 8
+			iterations: ITERATIONS
 		});
 	}
 };
@@ -27,7 +27,7 @@ const matchWordArrayWithLetters = (wordsArray, alphabetSettings) => {
 
 		for (let i = 1; i <= mas.length; i++) {
 			buf += mas[i - 1].charCodeAt(0);
-			if (i % 8 === 0) {
+			if (i % ITERATIONS === 0) {
 				res += getLetter(buf, alph.next());
 				buf = 0;
 			}
