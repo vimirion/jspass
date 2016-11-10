@@ -12,17 +12,21 @@ module.exports = {
 				test: /\.js$/,
 				exclude: /node_modules/,
 				loader: 'babel-loader'
+			},
+			{
+				test: /\.scss$/,
+				loaders: ['style', 'css', 'sass']
 			}
 		]
 	},
 	plugins: [
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	compress: {
-		// 		warnings: false,
-		// 	},
-		// 	output: {
-		// 		comments: false,
-		// 	},
-		// }),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false,
+			},
+			output: {
+				comments: false,
+			},
+		}),
 	]
 };
