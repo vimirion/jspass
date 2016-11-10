@@ -1,72 +1,108 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+	<title>jspass</title>
 
-    <title>JSpass test page</title>
-    <meta name="description" content="The HTML5 Herald">
-    <meta name="author" content="SitePoint">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.0.0/normalize.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
-
-
-    <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+	<link href="mui.min.css" rel="stylesheet" type="text/css" />
+	<link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <p>
-        <label for="mainPass" class="input-label">Главный пароль</label>
-        <input type="password" id="mainPass" name="mainPass" class="input">
-    </p>
+	<div id="sidedrawer" class="mui--no-user-select">
+		<div id="sidedrawer-brand" class="mui--appbar-line-height">JsPass</div>
+		<div class="mui-divider"></div>
+		<ul>
+			<li>
+				<strong>What is it?</strong>
+			</li>
+			<li>
+				<strong>Why is it safe?</strong>
+			</li>
+			<li>
+				<strong>Source code</strong>
+			</li>
+		</ul>
+	</div>
+	<header id="header">
+		<div class="mui-appbar mui--appbar-line-height">
+			<div class="mui-container-fluid">
+				<a class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer">☰</a>
+				<a class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer">☰</a>
+				<span class="mui--text-title mui--visible-xs-inline-block mui--visible-sm-inline-block">JsPass</span>
+			</div>
+		</div>
+	</header>
+	<div id="content-wrapper">
+		<div class="mui--appbar-height"></div>
+		<div class="mui-container">
+			<div class="mui-row">
+				<div class="mui-textfield mui-textfield--float-label">
+					<input type="password" id="mainPass" name="mainPass">
+					<label for="mainPass">Главный пароль</label>
+				</div>
+			</div>
+			<div class="mui-row">
+				<div class="mui-textfield mui-textfield--float-label">
+					<input type="text" id="domain" name="domain">
+					<label for="domain">Сервис</label>
+				</div>
+			</div>
+			<div class="mui-row">
+				<div class="mui-textfield mui-textfield--float-label">
+					<input type="number" id="length" name="length" value="20">
+					<label for="length">Длина пароля</label>
+				</div>
+			</div>
+			<div class="mui-row">
+				<div class="mui-checkbox">
+					<input type="checkbox" checked="checked" id="uppercase" name="uppercase" />
+					<label for="uppercase">Заглавные <span class="mui--text-dark-secondary">'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span></label>
+				</div>
+			</div>
+			<div class="mui-row">
+				<div class="mui-checkbox">
+					<input type="checkbox" id="lowercase" name="lowercase" checked="checked" />
+					<label for="lowercase">Строчные <span class="mui--text-dark-secondary">'abcdefghijklmnopqrstuvwxyz'</span></label>
+				</div>
+			</div>
+			<div class="mui-row">
+				<div class="mui-checkbox">
+					<input type="checkbox" id="digits" name="digits" checked="checked" />
+					<label for="digits">Цифры <span class="mui--text-dark-secondary">'1234567890'</span></label>
+				</div>
+			</div>
+			<div class="mui-row">
+				<div class="mui-checkbox">
+					<input type="checkbox" id="symbols" name="symbols" checked="checked" />
+					<label for="symbols">Символы <span class="mui--text-dark-secondary">'!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'</span></label>
+				</div>
+			</div>
 
-    <p>
-        <label for="domain" class="input-label">Сервис</label>
-        <input type="text" id="domain" name="domain" class="input">
-    </p>
+			<div class="mui-row">
+				<button id="generate" class="mui-btn mui-btn--primary" type="submit" name="action">Генерировать</button>
+			</div>
 
-    <p>
-        <label for="domain" class="input-label">Длина пароля</label>
-        <input type="number" id="length" name="length" value="20" class="input">
-    </p>
+			<div class="mui--appbar-height"></div>
 
-    <div class="checkbox">
-        <label for="uppercase">Заглавные</label>
-        <input type="checkbox" checked id="uppercase" name="uppercase">
-    </div>
+			<div class="mui-row">
+				<div class="mui-textfield mui-textfield--float-label">
+					<input id="result" type="text" name="result" class='mui--is-not-empty'>
+					<label for="result">Результат</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer id="footer">
+		<div class="mui-container-fluid">
+			<br> Made with ♥ by Vladimir Ionov
+		</div>
+	</footer>
 
-    <div class="checkbox">
-        <label for="lowercase">Строчные</label>
-        <input type="checkbox" checked id="lowercase" name="lowercase">
-    </div>
-
-    <div class="checkbox">
-        <label for="digits">Цифры</label>
-        <input type="checkbox" checked id="digits" name="digits">
-    </div>
-
-    <div class="checkbox">
-        <label for="symbols">Символы</label>
-        <input type="checkbox" checked id="symbols" name="symbols">
-    </div>
-
-    <p>
-        <input type="button" value="Генерировать" id="generate" class="input input-btn">
-    </p>
-
-    <p>
-        <label for="result" class="input-label">Результат</label>
-        <input type="text" id="result" name="result" class="input" readonly>
-    </p>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/pbkdf2.js"></script>
-    <script src="alphabet.js"></script>
-    <script src="jspass.js"></script>
-    <script src="io.js"></script>
+	<script src="index.js"></script>
+	<script src="mui.min.js"></script>
 </body>
 
 </html>
